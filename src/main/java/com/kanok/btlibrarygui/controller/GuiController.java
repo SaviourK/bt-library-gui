@@ -2,6 +2,7 @@ package com.kanok.btlibrarygui.controller;
 
 import com.kanok.btlibrarygui.ConfirmBox;
 import com.kanok.btlibrarygui.model.TorrentRow;
+import com.kanok.btlibrarygui.service.GuiService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +25,8 @@ public class GuiController implements Initializable {
 
     private static final Logger logger = LoggerFactory.getLogger(GuiController.class);
 
+    private final GuiService service;
+
     public BorderPane pane;
 
     public Stage window;
@@ -40,32 +43,17 @@ public class GuiController implements Initializable {
 
     private ObservableList<TorrentRow> torrents;
 
+    public GuiController(GuiService service) {
+        this.service = service;
+    }
+
 
     public void setWindow(Stage window) {
         this.window = window;
     }
 
     public void handleAddTorrentBtn(ActionEvent actionEvent) {
-        File selectedFile = fc.showOpenDialog(pane.getScene().getWindow());
-        if (selectedFile != null) {
-            /*file = fc.getSelectedFile();
-            options.setMetaInfoFile(file);
-            logger.info("Opening: " + file.getName() + ".");
-            selectedFileLbl.setVisible(true);
-            selectedFileLbl.setText("Selected file: " + file.getName());
-            startDownload(options);*/
-            torrents.add(new TorrentRow(selectedFile.getName(), 0, 0));
-            logger.warn("Add torrent btn clicked");
-        } else {
-            logger.warn("Open command cancelled by user.");
-        }
-
-
-    }
-
-    private void initFileChooser() {
-        fc = new FileChooser();
-        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Torrent files", "*.torrent"));
+        service.handleAddTorrentBtn(actionEvent, pane, torrents);
     }
 
     @Override
@@ -74,7 +62,7 @@ public class GuiController implements Initializable {
         logger.info("loading user data...");
         addTableContent();
         //window = (Stage) pane.getScene().getWindow();
-        initFileChooser();
+
     }
 
     public void logginButtonClicked() {
