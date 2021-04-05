@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kanok.btlibrarygui.controller.GuiController">
+    <top>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Close" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Delete" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="About" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <HBox spacing="10.0">
+                    <children>
+                        <TextField />
+                        <TextField layoutX="10.0" layoutY="10.0" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#handleAddTorrentBtn" text="Add torrent" />
+                        <Button layoutX="308.0" layoutY="10.0" mnemonicParsing="false" text="Settings" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+    <left>
+        <TreeView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+    </left>
+    <center>
+        <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="nameColumn" maxWidth="-1.0" minWidth="-1.0" prefWidth="-1.0" text="Name" />
+                <TableColumn fx:id="downloadedColumn" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Downloaded" />
+                <TableColumn fx:id="quantityColumn" maxWidth="-1.0" minWidth="-1.0" prefWidth="-1.0" text="Quantity" />
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <HBox BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Label" />
+            </children>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+            <padding>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+            </padding>
+        </HBox>
+    </bottom>
+</BorderPane>
